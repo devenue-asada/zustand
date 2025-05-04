@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
+import { immer } from "zustand/middleware/immer";
 
 export type Todo = {
   id: string;
@@ -11,14 +12,14 @@ export type Todo = {
 type TodoState = {
   todos: Todo[] | [];
   setTodoList: (todos: Todo[]) => void;
-  getTodo: (id: string) => Todo;
+  getTodo: (id: string) => Todo | undefined;
   addTodo: (todo: Todo) => void;
   clearTodo: () => void;
 };
 
 export const useTodoStore = create<TodoState>()(
   devtools(
-    (set, get) => ({
+    immer((set, get) => ({
       todos: [],
       setTodoList: (todos) => set({ todos }, false, "todo/setTodoList"),
       getTodo: (id) => {
@@ -34,7 +35,7 @@ export const useTodoStore = create<TodoState>()(
           "todo/addTodo"
         ),
       clearTodo: () => set({ todos: [] }, false, "todo/clearTodo"),
-    }),
+    })),
     {
       name: "TodoStore",
       trace: true,
