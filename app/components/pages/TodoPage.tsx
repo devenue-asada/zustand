@@ -6,18 +6,10 @@ import TodoList from "../todo/TodoList";
 import AddTodo from "../todo/AddTodo";
 
 export const TodoPage = () => {
-  const { setTodoList, clearTodo } = useTodoStore();
-
-  const getTodos = async () => {
-    const res = await fetch("/api/todo");
-    return await res.json();
-  };
-
+  const { loading } = useTodoStore((state) => state);
+  const { fetchTodos, clearTodo } = useTodoStore((state) => state.actions);
   useEffect(() => {
-    (async () => {
-      const res = await getTodos();
-      setTodoList(res);
-    })();
+    fetchTodos();
   }, []);
 
   const handleClear = () => {
