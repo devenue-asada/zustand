@@ -11,15 +11,20 @@ export type Todo = {
 type TodoState = {
   todos: Todo[] | [];
   setTodoList: (todos: Todo[]) => void;
+  getTodo: (id: string) => Todo;
   addTodo: (todo: Todo) => void;
   clearTodo: () => void;
 };
 
 export const useTodoStore = create<TodoState>()(
   devtools(
-    (set) => ({
+    (set, get) => ({
       todos: [],
       setTodoList: (todos) => set({ todos }, false, "todo/setTodoList"),
+      getTodo: (id) => {
+        const { todos } = get();
+        return todos.find((todo) => todo.id === id);
+      },
       addTodo: (todo) =>
         set(
           (state) => ({

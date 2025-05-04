@@ -1,10 +1,11 @@
 "use client";
 
 import { Todo, useTodoStore } from "@/app/stores/todoStore";
-import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export const TodoList = () => {
   const { todos } = useTodoStore();
+  const router = useRouter();
 
   return (
     <>
@@ -21,10 +22,15 @@ export const TodoList = () => {
           <tbody>
             {todos.map((v: Todo, i: number) => (
               <tr
-                key={i}
+                key={v.id}
                 className={
-                  i % 2 === 0 ? "bg-white" : "bg-gray-50 hover:bg-gray-100"
+                  i % 2 === 0
+                    ? "bg-white cursor-pointer"
+                    : "bg-gray-50 hover:bg-gray-100 cursor-pointer"
                 }
+                onClick={() => {
+                  router.push(`/${v.id}`);
+                }}
               >
                 <td className="py-2 px-4 border-b">{v.id}</td>
                 <td className="py-2 px-4 border-b">{v.title}</td>
