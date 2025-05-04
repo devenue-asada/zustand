@@ -10,7 +10,7 @@ export type Todo = {
 
 type TodoState = {
   todos: Todo[] | [];
-  setTodo: (todos: Todo[]) => void;
+  setTodoList: (todos: Todo[]) => void;
   addTodo: (todo: Todo) => void;
   clearTodo: () => void;
 };
@@ -19,7 +19,7 @@ export const useTodoStore = create<TodoState>()(
   devtools(
     (set) => ({
       todos: [],
-      setTodo: (todos) => set({ todos }, false, "todo/setTodo"),
+      setTodoList: (todos) => set({ todos }, false, "todo/setTodoList"),
       addTodo: (todo) =>
         set(
           (state) => ({
