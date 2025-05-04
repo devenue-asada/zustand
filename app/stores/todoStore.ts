@@ -42,20 +42,3 @@ export const useTodoStore = create<TodoState>()(
     }
   )
 );
-
-// addTodo: (title) =>
-//      set(
-//        (state) => ({
-//          todos: [
-//            ...state.todos,
-//            {
-//              id: crypto.randomUUID(),
-//              title,
-//              completed: false,
-//              createdAt: new Date(),
-//            },
-//          ],
-//        }),
-//        false,
-//        "todo/add"
-//      ),
