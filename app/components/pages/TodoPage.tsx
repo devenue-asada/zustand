@@ -1,13 +1,13 @@
 "use client";
 
-import { useTodoStore } from "@/app/stores/todoStore";
 import { useEffect } from "react";
 import TodoList from "../todo/TodoList";
-import AddTodo from "../todo/AddTodo";
+import { AddTodo } from "../todo/AddTodo";
+import { selectActions, selectLoading, useTodoStore } from "@/app/stores/todo";
 
 export const TodoPage = () => {
-  const { loading } = useTodoStore((state) => state);
-  const { fetchTodos, clearTodo } = useTodoStore((state) => state.actions);
+  const loading = useTodoStore(selectLoading);
+  const { fetchTodos, clearTodo } = useTodoStore(selectActions);
   useEffect(() => {
     fetchTodos();
   }, []);

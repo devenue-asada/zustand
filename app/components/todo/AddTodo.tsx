@@ -1,10 +1,10 @@
 "use client";
 
-import { useTodoStore } from "@/app/stores/todoStore";
+import { selectActions, useTodoStore } from "@/app/stores/todo";
 import { useState } from "react";
 
 export const AddTodo = () => {
-  const { addTodo } = useTodoStore();
+  const { addTodo } = useTodoStore(selectActions);
   const [title, setTitle] = useState<string>("");
 
   const handleAddTodo = async () => {
@@ -40,5 +40,3 @@ export const AddTodo = () => {
     </div>
   );
 };
-
-export default AddTodo;

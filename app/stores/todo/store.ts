@@ -9,7 +9,7 @@ export type Todo = {
   createdAt?: Date;
 };
 
-type TodoState = {
+export type TodoState = {
   todos: Todo[] | [];
   loading: boolean;
   error: string | null;

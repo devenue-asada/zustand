@@ -1,10 +1,10 @@
 "use client";
 
-import { Todo, useTodoStore } from "@/app/stores/todoStore";
+import { selectTodos, useTodoStore } from "@/app/stores/todo";
 import { useRouter } from "next/navigation";
 
 export const TodoList = () => {
-  const { todos } = useTodoStore();
+  const todos = useTodoStore(selectTodos);
   const router = useRouter();
 
   return (
@@ -20,7 +20,7 @@ export const TodoList = () => {
             </tr>
           </thead>
           <tbody>
-            {todos.map((v: Todo, i: number) => (
+            {todos.map((v, i: number) => (
               <tr
                 key={v.id}
                 className={
