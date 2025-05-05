@@ -3,7 +3,12 @@
 import { useEffect } from "react";
 import TodoList from "../todo/TodoList";
 import { AddTodo } from "../todo/AddTodo";
-import { selectActions, selectLoading, useTodoStore } from "@/app/stores/todo";
+import {
+  selectActions,
+  selectLoading,
+  selectTodoById,
+  useTodoStore,
+} from "@/app/stores/todo";
 
 export const TodoPage = () => {
   const loading = useTodoStore(selectLoading);
@@ -17,17 +22,19 @@ export const TodoPage = () => {
   };
 
   return (
-    <div className="m-2">
-      <TodoList />
-      <AddTodo />
-      <button
-        type="button"
-        className="bg-red-200 p-2 m-2 border-2 cursor-pointer"
-        onClick={handleClear}
-      >
-        すべて削除
-      </button>
-    </div>
+    <>
+      <div className="m-2">
+        <TodoList />
+        <AddTodo />
+        <button
+          type="button"
+          className="bg-red-200 p-2 m-2 border-2 cursor-pointer"
+          onClick={handleClear}
+        >
+          すべて削除
+        </button>
+      </div>
+    </>
   );
 };
 
